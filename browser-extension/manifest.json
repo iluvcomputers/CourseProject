@@ -1,31 +1,26 @@
 {
-
-    "description": "Adds a browser action icon to the toolbar. Click the button to choose a beast. The active tab's body content is then replaced with a picture of the chosen beast. See https://developer.mozilla.org/en-US/Add-ons/WebExtensions/Examples#beastify",
     "manifest_version": 2,
-    "name": "Beastify",
+    "name": "Context menu: Copy link with types",
+    "description": "Add a context menu option to links to copy the link to the clipboard, as plain text and as a link in rich HTML.",
     "version": "1.0",
-    "homepage_url": "https://github.com/mdn/webextensions-examples/tree/master/beastify",
-    "icons": {
-      "48": "icons/beasts-48.png"
+    "homepage_url": "https://github.com/mdn/webextensions-examples/tree/master/context-menu-copy-link-with-types",
+
+    "background": {
+        "scripts": [
+            "background.js"
+        ]
     },
-  
+
+    "content_scripts": [{
+        "matches": ["*://*.coursera.org/learn/cs-410/*"],
+        "js": ["query-copy.js"]
+    }],
+
     "permissions": [
-      "activeTab"
-    ],
-  
-    "browser_action": {
-      "default_icon": "icons/beasts-32.png",
-      "theme_icons": [{
-          "light": "icons/beasts-32-light.png",
-          "dark": "icons/beasts-32.png",
-          "size": 32
-      }],
-      "default_title": "Beastify",
-      "default_popup": "popup/choose_beast.html"
-    },
-  
-    "web_accessible_resources": [
-      "beasts/*.jpg"
+        "activeTab",
+        "tabs",
+        "contextMenus",
+        "clipboardWrite",
+        "clipboardRead"
     ]
-  
-  }
+}
