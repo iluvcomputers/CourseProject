@@ -1,0 +1,39 @@
+#########################################
+#                                       #
+#               README                  #
+#                                       #
+#########################################
+
+# Run the server on localhost:5000
+python3 server.py
+
+# Server has the following endpoint
+ /       - GET, check if server is running
+ /test   - GET, takes no params, returns dummy result JSON
+ /search - POST, takes JSON search query, returns JSON results
+
+    	# query JSON:
+	{
+	  "query": [
+	    "query",
+	    "terms"
+	  ]
+	}
+
+	# results JSON:
+	{
+	  "results": [
+	    {
+	      "docID": 1,
+	      "body": "if you look at the two Unigram Language Models...",
+	      "timestamp": "12:24:01",
+	      "week": 7,
+	      "lecture": "7.2"
+	    }
+	  ]
+	}
+
+
+# POST test query to server
+python3 test.py
+
