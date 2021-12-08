@@ -7,3 +7,16 @@ function pasteQuery() {
 }
 
 document.addEventListener('DOMContentLoaded', pasteQuery);
+
+console.log('made it to tabs');
+// test hitting our local server
+fetch('localhost:5000/test')
+  .then(function (response) {
+    return response.json();
+  })
+  .then(function (jsonResponse) {
+    console.log(jsonResponse);
+  })
+  .catch(function (error) {
+    console.log('Error: ' + error);
+  });
