@@ -2,7 +2,7 @@
 
 Presently, Coursera video subtitles search provides exact match only for queries. Due to the inaccuracies in subtitles, as well as the frequency of typos, there is a clear benefit to implementing approximate string matching, or fuzzy search. Fuzzy search will help ensure students do not miss out on important information.
 
-# Browser Extension
+## Browser Extension
 
 ### Requirements
 
@@ -34,7 +34,7 @@ First, import the add-on:
 
 ---
 
-# Approximate String Matching Algorithm 
+## Approximate String Matching Algorithm 
 
 ### Requirements 
 
