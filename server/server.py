@@ -1,4 +1,5 @@
 from flask import Flask, json, request
+from flask_cors import cross_origin
 
 # TODO
 # import NainaSearchModule
@@ -11,6 +12,7 @@ api = Flask(__name__)
 Basic endpoint to check if the server is alive
 '''
 @api.route('/', methods=['GET', 'POST'])
+@cross_origin()
 def is_alive():
     return "yes, the server is alive; <br>hit /test for json response <br>or POST a JSON query to /search"
 
@@ -19,6 +21,7 @@ def is_alive():
 Returns a dummy JSON result
 '''
 @api.route('/test', methods=['GET'])
+@cross_origin()
 def test():
     return json.dumps(dummy_json_results)
 
@@ -48,6 +51,7 @@ returns results as JSON in the form:
 
 '''
 @api.route('/search', methods=['POST'])
+@cross_origin()
 def search():
     
     print(request.get_json())
