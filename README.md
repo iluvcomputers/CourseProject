@@ -51,6 +51,7 @@ First, import the add-on:
 
 - stemming of query and documents (subtitles)
 - removal of stop words from query 
-- results returned in ranked order based on closeness of match
+- bag of words representation of query
+- results returned in ranked order based on closeness of match (count of query term matches in document)
 
 
