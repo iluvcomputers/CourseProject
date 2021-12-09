@@ -1,7 +1,10 @@
 from flask import Flask, json, request
 
 # TODO
-# import NainaSearchModule
+from fuzzy_match import Corpus
+
+corpus = Corpus()
+corpus.build_corpus()
 
 dummy_json_results = {'results' : [{'docNumber' : 1,'body' : 'if you look at the two Unigram Language Models...', 'timestamp' : '12:24:01', 'week' : 7, 'lecture' : '7.2'}]}
 
@@ -50,14 +53,17 @@ returns results as JSON in the form:
 @api.route('/search', methods=['POST'])
 def search():
     
-    print(request.get_json())
-    
+    queryJSON = request.get_json()
+    #print(queryJSON)
     # TODO 
     # pass JSON query to search function
     # results_json = naina_search(request.get_json())
     # return json.dumps(results_json)
     
-    return json.dumps(dummy_json_results)
+    res = corpus.run_search(queryJSON)
+    
+    #return json.dumps(dummy_json_results)
+    return json.dumps(res)
 
 if __name__ == '__main__':
     api.run('localhost') 
