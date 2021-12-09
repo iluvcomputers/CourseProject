@@ -1,7 +1,6 @@
 browser.contextMenus.create({
   id: 'send-to-fuzzy-search',
-  title: 'Send to fuzzy search',
-  contexts: ['selection'],
+  title: 'Fuzzy Search',
 });
 
 browser.contextMenus.onClicked.addListener((info, tab) => {
