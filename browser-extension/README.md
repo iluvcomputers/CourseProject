@@ -13,16 +13,19 @@ First, import the add-on:
 3. Click "Load Temporary Add-On"
 4. Navigate to your saved `manifest.json` file and click on it
 
+![Install Gif](./images/Install_Fuzzy_Search.gif)
+
 ### Using the Extension
 
-1. Navigate to https://www.coursera.org/learn/cs-410/home/welcome
-2. Highlight a term you'd like to fuzzy search for
-3. Right-click and select "Send to Fuzzy Search"
+1. Right-Click on any page in Firefox
+2. Click "Fuzzy Search"
+3. On the Fuzzy Search page, enter a query you'd like to search for
+
+![Using Fuzzy Search Gif](./images/Using_Fuzzy_Search.gif)
 
 ### Required JS files
 
-- background.js: This script is required for the "Send to fuzzy search" context menu option
-- query-copy.js: This script is required to copy from the clipboard
-- tabs.js: This script is required to paste query data into the results.html page
+- background.js: This script is required for the "Fuzzy search" context menu option
+- tabs.js: This script is related to the Fuzzy Script page and sends queries/receives responses for the application logic
 
 ---
