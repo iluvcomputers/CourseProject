@@ -7,7 +7,7 @@ function displayResults(jsonData) {
   // results is an array of n items
   let results = jsonData;
 
-   /* var headerRow =
+  /* var headerRow =
       '<tr> <td> <b> Results </b> </td> <td> <b> Lecture </b> </td> <td> <b> Timestamp </b> </td> <td> <b> Score </b> </td></tr>';
     var newTable = document.createElement('table');
     newTable.setAttribute('style', 'border-spacing:50px;');
@@ -100,14 +100,14 @@ document.getElementById('form').addEventListener('submit', function (e) {
   // jsonify the query to send to the server
   var object = {};
   formData.forEach(function (value, key) {
-    if(key == 'query'){
-        qarray = value.split(" ");
-        object[key] = qarray;
+    if (key == 'query') {
+      qarray = value.split(' ');
+      object[key] = qarray;
     } else {
-        object[key] = value;
+      object[key] = value;
     }
   });
-  
+
   var json = JSON.stringify(object);
 
   sendQuery(json);
