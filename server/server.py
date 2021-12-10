@@ -57,8 +57,8 @@ returns results as JSON in the form:
 @cross_origin()
 def search():
     
-    queryJSON = request.get_json()
-    #print(queryJSON)
+    queryJSON = request.get_json(force=True)
+    print(queryJSON)
     # TODO 
     # pass JSON query to search function
     # results_json = naina_search(request.get_json())

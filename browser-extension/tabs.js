@@ -7,6 +7,14 @@ function displayResults(jsonData) {
   // results is an array of n items
   let results = jsonData;
 
+   /* var headerRow =
+      '<tr> <td> <b> Results </b> </td> <td> <b> Lecture </b> </td> <td> <b> Timestamp </b> </td> <td> <b> Score </b> </td></tr>';
+    var newTable = document.createElement('table');
+    newTable.setAttribute('style', 'border-spacing:50px;');
+    document.getElementById('landing-area').appendChild(newTable);
+    
+    document.getElementById('landing-area').lastChild.innerHTML += headerRow;
+*/
   results.forEach((element) => {
     let item = JSON.stringify(element);
     // you can now access element.body, element.lecture, element.timestamp, element.week
@@ -19,20 +27,20 @@ function displayResults(jsonData) {
     // add the DOM table to the landing-area
     document.getElementById('landing-area').appendChild(newTable);
     var headerRow =
-      '<tr> <td> <b> Body </b> </td> <td> <b> Lecture </b> </td> <td> <b> Timestamp </b> </td> <td> <b> Week </b> </td></tr>';
+      '<tr> <td> <b> Results </b> </td> <td> <b> Lecture </b> </td> <td> <b> Timestamp </b> </td> <td> <b> Score </b> </td></tr>';
     var tr = '<tr>';
     tr +=
       '<td> ' +
-      element.body +
+      element.doc +
       '</td>' +
       '<td> ' +
-      element.lecture +
+      element.videoname +
       '</td>' +
       '<td>' +
       element.timestamp +
       '</td>' +
       '<td>' +
-      element.week +
+      element.score +
       '</td>';
 
     document.getElementById('landing-area').lastChild.innerHTML += headerRow;
@@ -92,8 +100,14 @@ document.getElementById('form').addEventListener('submit', function (e) {
   // jsonify the query to send to the server
   var object = {};
   formData.forEach(function (value, key) {
-    object[key] = value;
+    if(key == 'query'){
+        qarray = value.split(" ");
+        object[key] = qarray;
+    } else {
+        object[key] = value;
+    }
   });
+  
   var json = JSON.stringify(object);
 
   sendQuery(json);
