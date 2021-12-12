@@ -4,6 +4,12 @@ Presently, Coursera video subtitles search provides exact match only for queries
 
 ---
 
+## Project Demo
+
+https://uofi.box.com/s/3fhxuug2sym52l4h9h3nsr9gjx9b1y2u
+
+---
+
 ## Browser Extension
 
 ### Requirements
