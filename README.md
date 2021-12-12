@@ -78,9 +78,9 @@ from the server directory, run:
 
 ### Implementation & Endpoints
 
-/       - GET, check if server is running
-/test   - GET, takes no params, returns dummy result JSON
-/search - POST, takes JSON search query, returns JSON results
+/       - GET, check if server is running  
+/test   - GET, takes no params, returns dummy result JSON  
+/search - POST, takes JSON search query, returns JSON results  
 
 query JSON: 
   ```json
