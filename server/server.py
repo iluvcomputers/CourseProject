@@ -43,11 +43,11 @@ returns results as JSON in the form:
 {
   "results": [
     {
-      "docID": 1,
-      "body": "if you look at the two Unigram Language Models...",
+      "videoname": "4-6-smoothing-methods",
+      "id": "12",
       "timestamp": "12:24:01",
-      "week": 7,
-      "lecture": "7.2"
+      "doc": "dirichlet prior smothing...",
+      "score": "43"
     }
   ]
 }
@@ -58,15 +58,8 @@ returns results as JSON in the form:
 def search():
     
     queryJSON = request.get_json(force=True)
-    print(queryJSON)
-    # TODO 
-    # pass JSON query to search function
-    # results_json = naina_search(request.get_json())
-    # return json.dumps(results_json)
-    
     res = corpus.run_search(queryJSON)
     
-    #return json.dumps(dummy_json_results)
     return json.dumps(res)
 
 if __name__ == '__main__':

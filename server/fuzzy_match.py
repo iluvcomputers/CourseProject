@@ -9,6 +9,9 @@ from nltk.tokenize import word_tokenize
 import glob
 import math
 
+'''
+pack the resulting documents as json
+'''
 def packJSON(ls):
 
     keys = ["videoname", "id", "timestamp", "doc"]
@@ -21,8 +24,9 @@ def packJSON(ls):
     res = {}
     res['results'] = out
     return res
-
-# returns 2d array with fields: videoname, offset, timestamp, and document
+'''
+returns 2d array with fields: videoname, offset, timestamp, and document
+'''
 def getDocs():
     docs = []
     for fname in glob.glob("data/*.srt"):
@@ -40,6 +44,9 @@ def getDocs():
 
     return np.array(docs)
 
+'''
+score a document based on tf-idf
+'''
 def score_func(query, doc, tf, N):
     """
     Returns 0 if doc is not a match for query, and 1 if it is.
@@ -49,13 +56,9 @@ def score_func(query, doc, tf, N):
 
     for i in range(len(query)):
         term_matrix[i] = doc.count(query[i])
-        #if query[i] in doc:
-        #    term_matrix[i] += 1
-        #else:
-        #    term_matrix[i] = 0
-
-    # if the terms are mostly not matched, the doc is not a match
-    #if  2*(np.count_nonzero(term_matrix == 0)) <= len(query):
+    '''
+    use idf and tf to score docs -- no length norm bc doc lengths are very similar
+    '''
     sc = 0
     for t in range(len(term_matrix)):
         sc += int((math.log(N/(tf.get(query[t], N)+1), 2) + 1) * (math.log(term_matrix[t]+1, 2)+1))
@@ -128,9 +131,6 @@ class Corpus(object):
                 self.tf[pstem] = self.tf.get(pstem, 0) + 1
             self.documents.append(new_words)
             
-        #print(self.tf)
-        #exit(0)
-
     def build_match_list(self):
         """
         Get match/no match for each document based on query
@@ -140,18 +140,15 @@ class Corpus(object):
             if score >= 1:
                 # list of matched records
                 self.match_list.append([score, list(self.subtitles[i])])
-                #self.match_list.append(list(self.subtitles[i]))
 
     def run_search(self, queryJSON, rank=True):
         
         self.build_query(queryJSON)
-        #print(self.query)
         self.build_match_list()
         if rank:
             self.match_list.sort(key = lambda x: x[0], reverse=True)
             # save without rank info
             #self.match_list = [x[1] for x in self.match_list] 
-        #print(self.match_list[:20])
        
         # return only top 25
         return(packJSON(self.match_list[:25]))
@@ -159,7 +156,5 @@ class Corpus(object):
 def run(queryJSON):
     corpus = Corpus()
     corpus.build_corpus()
-    #print(corpus.run_search(queryJSON))
-    #print(sorted(corpus.tf.items(), key=lambda kv: kv[1]))
 if __name__ == '__main__':
     run(json.loads(sys.argv[1]))
